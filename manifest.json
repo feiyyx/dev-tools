@@ -7,7 +7,7 @@
     "background": {
         "service_worker": "background.js"
     },
-    "permissions": ["storage", "*"],
+    "permissions": ["storage","activeTab"],
 	"action": {
 		"default_title": "这是一个示例Chrome插件",
 		"default_popup": "src/html/popup.html"
@@ -16,6 +16,19 @@
     "options_ui": {
         "options_page": "src/html/options.html",
         "open_in_tab": false
-    }
+    },
+    "content_scripts": [
+        {
+            "matches": ["https://*/*"],
+            "run_at": "document_end",
+            "js": ["src/js/inject.js"]
+        }
+    ]
+    // "web_accessible_resources": [
+    //     {
+    //         "resources": [ "myscript.js" ],
+    //         "matches": [ "https://*/*" ]
+    //     }
+    // ]
 }
 
