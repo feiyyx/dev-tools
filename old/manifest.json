@@ -1,0 +1,27 @@
+{
+    "name": "Dev tools",
+    "description": "A tool for development",
+    "manifest_version": 3,
+    "version": "0.0.1",
+
+    "background": {
+        "service_worker": "background.js"
+    },
+    "permissions": ["storage", "activeTab"],
+    "action": {
+        "default_title": "这是一个示例Chrome插件",
+        "default_popup": "src/html/popup.html"
+    },
+    "options_page": "src/html/options.html",
+    "options_ui": {
+        "options_page": "src/html/options.html",
+        "open_in_tab": false
+    },
+    "content_scripts": [
+        {
+            "matches": ["https://*/*"],
+            "run_at": "document_end",
+            "js": ["src/js/inject.js"]
+        }
+    ]
+}
